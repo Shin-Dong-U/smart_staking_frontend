@@ -1,10 +1,10 @@
-type UseStorageReturnValue = {
+type StorageReturnValue = {
   getItem: (key: string) => string;
   setItem: (key: string, value: string) => boolean;
   removeItem: (key: string) => void;
 };
 
-const useStorage = (): UseStorageReturnValue => {
+const storage = (): StorageReturnValue => {
   
   const isBrowser: boolean = ((): boolean => typeof window !== 'undefined')();
 
@@ -34,4 +34,4 @@ const useStorage = (): UseStorageReturnValue => {
   };
 };
 
-export default useStorage;
+export default storage;

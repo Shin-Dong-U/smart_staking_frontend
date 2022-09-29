@@ -31,7 +31,7 @@ export const RequireTerms: React.FunctionComponent<TermsProps> = ({setTerms, han
             제1조 목적
           </Typography>
           <Typography component="h1" variant="h6">
-            이 약관은 요요허브(이하 "회사"라 한다)가 제공하는 요요허브 서비스(이하 "서비스"라 한다)의 이용조건 및 절차에 관한 기본적인 사항을 규정함을 목적으로 합니다.
+            이 약관은 요요허브(이하 &quot;회사&quot;라 한다)가 제공하는 요요허브 서비스(이하 &quot;서비스&quot;라 한다)의 이용조건 및 절차에 관한 기본적인 사항을 규정함을 목적으로 합니다.
           </Typography>
           <Typography component="h1" variant="h5">
             제2조 용어의 정의
@@ -40,16 +40,16 @@ export const RequireTerms: React.FunctionComponent<TermsProps> = ({setTerms, han
             이 약관에서 사용하는 용어의 정의는 다음과 같습니다.
           </Typography>
           <Typography component="h1" variant="h6">
-            1. "회원"이라 함은 회사와 서비스 이용계약을 체결하고 회사가 제공하는 서비스를 이용하는 고객을 말합니다.
+            1. &quot;회원&quot;이라 함은 회사와 서비스 이용계약을 체결하고 회사가 제공하는 서비스를 이용하는 고객을 말합니다.
           </Typography>
           <Typography component="h1" variant="h6">
-            2. "아이디(ID)"라 함은 회원의 식별과 서비스 이용을 위하여 회원이 정하고 회사가 승인하는 문자와 숫자의 조합을 말합니다.
+            2. &quot;아이디(ID)&quot;라 함은 회원의 식별과 서비스 이용을 위하여 회원이 정하고 회사가 승인하는 문자와 숫자의 조합을 말합니다.
           </Typography>
           <Typography component="h1" variant="h6">
-            3. "비밀번호"라 함은 회원이 부여 받은 아이디와 일치된 회원임을 확인하고 비밀보호를 위해 회원 자신이 정한 문자와 숫자의 조합을 말합니다.
+            3. &quot;비밀번호&quot;라 함은 회원이 부여 받은 아이디와 일치된 회원임을 확인하고 비밀보호를 위해 회원 자신이 정한 문자와 숫자의 조합을 말합니다.
           </Typography>
           <Typography component="h1" variant="h6">
-            4. "해지"라 함은 회사 또는 회원이 서비스 이용계약을 취소하는 것을 말합니다.
+            4. &quot;해지&quot;라 함은 회사 또는 회원이 서비스 이용계약을 취소하는 것을 말합니다.
           </Typography>
           <Typography component="h1" variant="h6">
             제3조 약관의 명시와 설명 및 개정

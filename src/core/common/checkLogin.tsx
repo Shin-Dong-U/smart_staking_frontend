@@ -1,7 +1,7 @@
-import useStorage from './storage';
+import storage from './storage';
 
 export const checkLogin = (): boolean => {
-  const user = useStorage().getItem('user');
+  const user = storage().getItem('user');
   if (!user) {
     return false;
   }

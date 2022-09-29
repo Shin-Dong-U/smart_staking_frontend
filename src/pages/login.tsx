@@ -5,7 +5,7 @@ import { Container, CssBaseline, Box, Avatar, Typography, TextField, Button, Gri
 
 import { preparationNotification } from "../core/common/utils";
 import Copyright from "../components/common/copyright";
-import useStorage from '../core/common/storage';
+import storage from '../core/common/storage';
 
 export const  Login = () => {
   const router = useRouter();
@@ -45,7 +45,7 @@ export const  Login = () => {
   }
 
   const onLoginSuccess = (response: AxiosResponse) => {
-    useStorage().setItem('user', JSON.stringify(response.data));
+    storage().setItem('user', JSON.stringify(response.data));
   }
 
   return (

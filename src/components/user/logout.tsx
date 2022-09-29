@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Button from '@mui/material/Button';
-import useStorage from '../../core/common/storage';
+import storage from '../../core/common/storage';
 import { goLogin } from '../../core/common/checkLogin';
 
 export const Logout = () => {
@@ -8,7 +8,7 @@ export const Logout = () => {
     axios
       .get('http://localhost:8080/user/logout', { withCredentials: true })
       .finally(() => {
-        useStorage().removeItem('user');
+        storage().removeItem('user');
         goLogin();
       });
   }
