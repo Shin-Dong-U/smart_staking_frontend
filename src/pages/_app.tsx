@@ -1,8 +1,18 @@
 import '../styles/globals.css'
+import { ReactNode } from 'react'
+import { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+type Page<P = {}> = (NextPage<P>) & { 
+  getLayout?: (page: ReactNode) => ReactNode
 }
 
-export default MyApp
+type Props = AppProps & {
+  Component: Page;
+}
+
+export default function MyApp({ Component, pageProps }: Props) {
+  const getLayout = Component.getLayout ?? ((page: ReactNode) => page);
+
+  return getLayout(<Component {...pageProps} />)
+}

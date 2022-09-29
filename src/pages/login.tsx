@@ -1,11 +1,14 @@
 import { useState } from 'react';
-import axios from "axios";
-import { Container, CssBaseline, Box, Avatar, Typography, TextField, FormControlLabel, Checkbox, Button, Grid, Link, createTheme, ThemeProvider } from "@mui/material"; 
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import { useRouter } from 'next/router';
+import axios, { AxiosResponse } from "axios";
+import { Container, CssBaseline, Box, Avatar, Typography, TextField, Button, Grid, Link } from "@mui/material"; 
 
+import { preparationNotification } from "../core/common/utils";
 import Copyright from "../components/common/copyright";
+import useStorage from '../core/common/storage';
 
 export const  Login = () => {
+  const router = useRouter();
   const [data, setData] = useState({  id: '', password: ''  });
 
   const handleChange = (e: any) => {
@@ -17,29 +20,38 @@ export const  Login = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log('submit clicked');
-
-    dologin();
+    onLogin();
   };
   
-  const dologin = () => {
-    if(data.id === '' || data.password === '') {
+  const onLogin = () => {
+    if(data.id === '' || data.password === '') { 
       alert('아이디와 비밀번호를 입력하세요.');
       return;
     }
-    return;
+    
     axios
-      .post('insert url', data)
+      .post(
+        'http://localhost:8080/user/login', 
+        data,
+        { withCredentials: true }
+      )
       .then(function (response) {
-        console.log(response);
+        onLoginSuccess(response);
+        router.push('/');
       })
       .catch(function (error) {
-        console.log(error);
+        alert('아이디 또는 비밀번호가 일치하지 않습니다.');
       });
   }
 
+  const onLoginSuccess = (response: AxiosResponse) => {
+    useStorage().setItem('user', JSON.stringify(response.data));
+  }
+
   return (
-      <Container component="main" maxWidth="xs">
+    <>
+    <div className="wrapper">
+      <Container component="main" >
         <CssBaseline />
         <Box
           sx={{
@@ -49,12 +61,8 @@ export const  Login = () => {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            로그인
-          </Typography>
+          <img src="/img/logo.jpg" alt="logo" style={{maxWidth:150}}/>
+          
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
             <TextField
               margin="normal"
@@ -63,7 +71,9 @@ export const  Login = () => {
               label="아이디"
               name="id"
               autoFocus
+              autoComplete="off"
               onChange={handleChange}
+              onBlur={handleChange}
             />
             <TextField
               margin="normal"
@@ -75,6 +85,7 @@ export const  Login = () => {
               id="password"
               autoComplete="current-password"
               onChange={handleChange}
+              onBlur={handleChange}
             />
             
             <Button
@@ -87,33 +98,39 @@ export const  Login = () => {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Button>
-                  회원가입
-                </Button>
+                <Link href="/register">
+                  <Button>
+                    회원가입
+                  </Button>
+                </Link>
               </Grid>
               <Grid item>
-                <Button>
+                <Button onClick={preparationNotification}>
                   1:1문의하기
                 </Button>
               </Grid>
             </Grid>
             <Grid container>
               <Grid item xs>
-                <Button>
+                <Button onClick={preparationNotification}>
                   아이디찾기
                 </Button>
               </Grid>
               <Grid item>
-                <Button>
+                <Button onClick={preparationNotification}>
                   비밀번호찾기
                 </Button>
               </Grid>
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
+    </div>
     
+    <footer className="footer">
+    <Copyright sx={{ mt: 8, mb: 4 }} />
+  </footer>
+  </>
   );
 }
 
