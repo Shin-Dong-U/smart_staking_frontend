@@ -3,7 +3,7 @@ export interface CertificationUser {
   commId: string;
   phoneNo: string;
   userName: string;
-  birthDate: string;
+  birthDay: string;
   sexCode: string;
   localCode: string;
   ci: string;
