@@ -15,8 +15,6 @@ const Layout = ({ children }: LayoutProps) => {
     if(!isLogin) {  
       const _isLogin = checkLogin();
       setIsLogin(_isLogin);
-
-      // if(!_isLogin) { goLogin(); }
     }
   }, []);
 

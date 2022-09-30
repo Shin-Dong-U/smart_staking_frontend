@@ -47,6 +47,10 @@ export const Login = () => {
     storage().setItem('user', JSON.stringify(response.data));
   };
 
+  const findId = () => {
+    alert("아이디는 '010', '-' 를 제외한 휴대폰 번호입니다.");
+  }
+
   return (
     <>
       <div className='wrapper'>
@@ -92,7 +96,7 @@ export const Login = () => {
               </Grid>
               <Grid container>
                 <Grid item xs>
-                  <Button onClick={preparationNotification}>아이디찾기</Button>
+                  <Button onClick={findId}>아이디찾기</Button>
                 </Grid>
                 <Grid item>
                   <Button onClick={preparationNotification}>비밀번호찾기</Button>

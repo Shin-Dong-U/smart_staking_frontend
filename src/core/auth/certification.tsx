@@ -59,7 +59,9 @@ export const parsePerson = (user: CertificationUser | null): Person | null => {
     return null;
   }
 
+  const userId = makeId(user.phoneNo);
   return {
+    id: userId,
     name: user.userName,
     phone: user.phoneNo,
     birth: user.birthDay,
@@ -69,3 +71,9 @@ export const parsePerson = (user: CertificationUser | null): Person | null => {
     di: user.di,
   };
 };
+
+const makeId = (phone: string): string => {
+  if(!phone) { return ""; }
+
+  return phone.substring(3, 11);
+}

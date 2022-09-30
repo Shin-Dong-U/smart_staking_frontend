@@ -14,6 +14,7 @@ export interface CertificationUser {
 }
 
 export interface Person {
+  id: string
   name: string;
   phone: string;
   birth: string;

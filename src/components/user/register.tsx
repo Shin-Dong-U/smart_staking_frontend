@@ -44,12 +44,12 @@ export const Register = ({ terms }: any) => {
       localCode: '',
     },
     validationSchema: Yup.object({
-      id: Yup.string()
-        .required('아이디를 입력해주세요.')
-        .matches(/^[a-zA-Z0-9]{4,12}$/, '아이디는 영문, 숫자 4~12자리로 입력해주세요.')
-        .test('is_unvailable_id', '사용할 수 없는 아이디 입니다.', function (value) {
-          return !UNAVAILABLE_ID.includes(value + '');
-        }),
+      // id: Yup.string()
+      //   .required('아이디를 입력해주세요.')
+      //   .matches(/^[a-zA-Z0-9]{4,12}$/, '아이디는 영문, 숫자 4~12자리로 입력해주세요.')
+      //   .test('is_unvailable_id', '사용할 수 없는 아이디 입니다.', function (value) {
+      //     return !UNAVAILABLE_ID.includes(value + '');
+      //   }),
       email: Yup.string().email('이메일 형식으로 입력해주세요').max(100).required('필수 입력 항목입니다'),
       password: Yup.string().min(4, '4글자 이상 입력해주세요').max(20, '20자 이내로 입력해주세요').required('필수 입력 항목입니다'),
       passwordConfirm: Yup.string().oneOf([Yup.ref('password'), null], '비밀번호가 일치하지 않습니다'),
@@ -131,6 +131,8 @@ export const Register = ({ terms }: any) => {
     if (!person) {
       return;
     }
+    
+    formik.setFieldValue('id', person.id);
     formik.setFieldValue('name', person.name);
     formik.setFieldValue('phone', person.phone);
     formik.setFieldValue('birth', person.birth);
@@ -140,6 +142,7 @@ export const Register = ({ terms }: any) => {
     formik.setFieldValue('di', person.di);
   };
 
+  
   return (
     <>
       <Head>
@@ -147,17 +150,22 @@ export const Register = ({ terms }: any) => {
       </Head>
       <Container maxWidth='sm'>
         <form onSubmit={formik.handleSubmit}>
-          <TextField
+          {/* <TextField
             label='아이디'
             type='text'
             name='id'
             margin='normal'
             fullWidth
+            inputProps={{ readOnly: true }}
             onChange={formik.handleChange}
             value={formik.values.id}
             error={Boolean(formik.errors.id)}
             helperText={formik.errors.id}
-          />
+          /> */}
+          
+          <Typography sx={{mt: 3}} color="primary">
+            * 아이디는 &apos;010&apos;, &apos;-&apos; 를 제외한 휴대폰 번호로 자동 생성됩니다. 
+          </Typography>
           <TextField
             label='비밀번호'
             type='password'
