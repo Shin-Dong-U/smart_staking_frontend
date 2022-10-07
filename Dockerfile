@@ -8,7 +8,7 @@ RUN npm i -y
 
 COPY . .
 
-EXPOSE 3000
+EXPOSE 30000
 
 RUN npm run build
 
