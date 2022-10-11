@@ -1,7 +1,10 @@
+import { User } from "../model/User"
+
 type StorageReturnValue = {
   getItem: (key: string) => string;
   setItem: (key: string, value: string) => boolean;
   removeItem: (key: string) => void;
+  getUser: () => User | null;
 };
 
 const storage = (): StorageReturnValue => {
@@ -21,6 +24,15 @@ const storage = (): StorageReturnValue => {
     return false;
   };
 
+  const getUser = (): User| null => {
+    const user = getItem('user');
+    try {
+      return user ? JSON.parse(user) : null;
+    } catch (e){
+      return null;
+    }
+  }
+
   const removeItem = (key: string): void => {
     if (isBrowser) {
       window['sessionStorage'].removeItem(key);
@@ -31,6 +43,7 @@ const storage = (): StorageReturnValue => {
     getItem,
     setItem,
     removeItem,
+    getUser
   };
 };
 

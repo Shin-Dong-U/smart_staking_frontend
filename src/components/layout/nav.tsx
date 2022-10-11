@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState, useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -8,12 +8,21 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Link from 'next/link';
 import Logout from '../user/logout';
+import storage from '../../core/common/storage';
 
 type ButtonAppBarProps = {
   isLogin: boolean;
 }
 
 export default function ButtonAppBar({isLogin}: ButtonAppBarProps) {
+  const [userName, setUserName] = useState('');
+  
+  useEffect(() => {
+    if(isLogin) {
+      const user = storage().getUser();
+      if(user) { setUserName(user.name); }
+    }
+  }, [isLogin]);
   
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -33,6 +42,9 @@ export default function ButtonAppBar({isLogin}: ButtonAppBarProps) {
               Home
             </Typography>
           </Link>
+          <Typography align='right'>
+            {userName && <span>{userName}님 환영합니다.</span>}
+          </Typography>
           <div>
           { isLogin ? (
             <Logout />

@@ -13,8 +13,6 @@ import DaumPostCode from '../common/daumPostCode';
 import * as Cert from '../../core/auth/certification';
 import { Person } from '../../core/model/CertificationUser';
 
-const UNAVAILABLE_ID = ['admin', 'system', 'manager', 'user', 'yoyohub', 'yolife'];
-
 export const Register = ({ terms }: any) => {
   const router = useRouter();
   const [openPostcode, setOpenPostcode] = useState(false);
