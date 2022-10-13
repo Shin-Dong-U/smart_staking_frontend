@@ -15,7 +15,7 @@ const DailyRewardBtn = () => {
     axios
       .get(`${serverUrl}/auth/daily-reward`, { withCredentials: true })
       .then((response) => {
-        alert('보상을 받았습니다.');
+        alert('배당금 수령');
       })
       .catch((error) => {
         alert('로그인 후 이용해주세요.');
@@ -24,7 +24,7 @@ const DailyRewardBtn = () => {
 
   return (
     <Button variant='contained' onClick={reward}>
-      일일보상받기
+      배당금 수령
     </Button>
   );
 };

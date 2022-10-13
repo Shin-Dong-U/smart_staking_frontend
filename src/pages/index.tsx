@@ -30,7 +30,7 @@ const Home = () => {
       <Grid item xs={4}>
         <StakingDashboard />
       </Grid>
-      <Grid container spacing={3}>
+      <Grid container spacing={3} sx={{p:3}}>
         <Grid item xs={12} sx={{mt: 5}}>
           <DailyRewardBtn />
           <Typhograpy variant="h6" align="center">
